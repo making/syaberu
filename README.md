@@ -8,7 +8,7 @@ curl localhost:8080 -H "X-Api-Key: ****" -d text=ビルドが失敗しました�
 curl localhost:8080 -H "X-Api-Key: ****" -d text=18:00になりました。帰宅の準備をしてください。 -d speaker=haruka -d emotion=happiness
 ```
 
-Call API via RSocket Proxy
+Call API via [Syaberu RSocket Proxy](https://github.com/making/syaberu-rsocket-proxy)
 
 ```
 # build
