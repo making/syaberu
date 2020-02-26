@@ -9,7 +9,7 @@ public class Syaberu {
                                              String speaker,
                                              String emotion) throws InterruptedException {
         VoiceContext<?> voiceContext;
-        if (StringUtils.isEmpty(speaker) || "null".equalsIgnoreCase(speaker) /* TO BE FIXED */ || SHOW.equalsIgnoreCase(speaker)) {
+        if (StringUtils.isEmpty(speaker) || "null".equalsIgnoreCase(speaker) /* TO BE FIXED */ || SHOW.equalsIgnoreCase(speaker.replace("\"", ""))) {
             voiceContext = Speaker.SHOW.ready();
         } else {
             EmotionalVoiceContext context = EmotionalSpeaker.valueOf(speaker.toUpperCase().replace("\"", "")).ready();
