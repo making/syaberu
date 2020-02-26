@@ -27,7 +27,7 @@ public class SyaberuRsocketSubscriber implements ApplicationRunner {
     public SyaberuRsocketSubscriber(SyaberuProps props, RSocketRequester.Builder builder, ObjectMapper objectMapper) {
         this.requesterMono = builder
                 .rsocketFactory(clientRSocketFactory -> clientRSocketFactory.acceptor(this::subscriberRsocket))
-                .setupMetadata(routingMetadata("subscribe." + props.getProxySubscribeId()), MimeType.valueOf(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING.getString()))
+                .setupMetadata(routingMetadata("subscribe." + props.getProxySubscriptionId()), MimeType.valueOf(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING.getString()))
                 .connectWebSocket(props.getProxyUri())
                 .log("connect");
         this.objectMapper = objectMapper;

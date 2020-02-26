@@ -14,7 +14,7 @@ Call API via [Syaberu RSocket Proxy](https://github.com/making/syaberu-rsocket-p
 # build
 ./mvnw clean package -Dmaven.test.skip=true
 
-java -jar target/syaberu-0.0.1-SNAPSHOT.jar --syaberu.proxy-uri=https://syaberu-rsocket-proxy.cfapps.io:8443/rsocket --syaberu.proxy-subscribe-id=foo 
+java -jar target/syaberu-0.0.1-SNAPSHOT.jar --syaberu.proxy-uri=https://syaberu-rsocket-proxy.cfapps.io:8443/rsocket --syaberu.proxy-subscription-id=foo 
 
 curl https://syaberu-rsocket-proxy.cfapps.io:8443/proxy/foo -H "X-Api-Key: ****" -d text=10:30になりました。スタンドアプミーティングを終了してください。
 ```

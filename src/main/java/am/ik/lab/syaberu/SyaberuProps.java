@@ -8,19 +8,19 @@ import java.net.URI;
 @ConfigurationProperties(prefix = "syaberu")
 public class SyaberuProps {
     private final URI proxyUri;
-    private final String proxySubscribeId;
+    private final String proxySubscriptionId;
 
     @ConstructorBinding
-    public SyaberuProps(URI proxyUri, String proxySubscribeId) {
+    public SyaberuProps(URI proxyUri, String proxySubscriptionId) {
         this.proxyUri = proxyUri;
-        this.proxySubscribeId = proxySubscribeId;
+        this.proxySubscriptionId = proxySubscriptionId;
     }
 
     public URI getProxyUri() {
         return proxyUri;
     }
 
-    public String getProxySubscribeId() {
-        return proxySubscribeId;
+    public String getProxySubscriptionId() {
+        return proxySubscriptionId;
     }
 }
