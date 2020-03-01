@@ -8,6 +8,8 @@ import io.rsocket.Payload;
 import io.rsocket.RSocket;
 import io.rsocket.metadata.WellKnownMimeType;
 import io.rsocket.util.DefaultPayload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.messaging.rsocket.RSocketRequester;
@@ -21,6 +23,7 @@ import java.time.Duration;
 
 @Component
 public class SyaberuRsocketSubscriber implements ApplicationRunner {
+    private final Logger log = LoggerFactory.getLogger(SyaberuRsocketSubscriber.class);
     private final Mono<RSocketRequester> requesterMono;
     private final ObjectMapper objectMapper;
 
@@ -47,6 +50,7 @@ public class SyaberuRsocketSubscriber implements ApplicationRunner {
                     final JsonNode text = json.get("text");
                     final JsonNode speaker = json.get("speaker");
                     final JsonNode emotion = json.get("emotion");
+                    log.info("text: {}, speaker: {}, emotion: {}", text, speaker, emotion);
                     return Mono.fromFuture(Syaberu.speak(apiKey.asText(),
                             text.asText(),
                             speaker == null ? null : speaker.asText(),
