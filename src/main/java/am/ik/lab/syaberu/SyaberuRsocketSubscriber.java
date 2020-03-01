@@ -25,11 +25,15 @@ public class SyaberuRsocketSubscriber implements ApplicationRunner {
     private final ObjectMapper objectMapper;
 
     public SyaberuRsocketSubscriber(SyaberuProps props, RSocketRequester.Builder builder, ObjectMapper objectMapper) {
-        this.requesterMono = builder
-                .rsocketFactory(clientRSocketFactory -> clientRSocketFactory.acceptor(this::subscriberRsocket))
-                .setupMetadata(routingMetadata("subscribe." + props.getProxySubscriptionId()), MimeType.valueOf(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING.getString()))
-                .connectWebSocket(props.getProxyUri())
-                .log("connect");
+        if (props.getProxyUri() != null) {
+            this.requesterMono = builder
+                    .rsocketFactory(clientRSocketFactory -> clientRSocketFactory.acceptor(this::subscriberRsocket))
+                    .setupMetadata(routingMetadata("subscribe." + props.getProxySubscriptionId()), MimeType.valueOf(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING.getString()))
+                    .connectWebSocket(props.getProxyUri())
+                    .log("connect");
+        } else {
+            this.requesterMono = Mono.empty();
+        }
         this.objectMapper = objectMapper;
     }
 
