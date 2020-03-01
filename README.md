@@ -5,7 +5,7 @@ A proxy server for [VoiceText Web API](https://cloud.voicetext.jp/webapi).
 Download latest from [repository](https://oss.sonatype.org/content/repositories/snapshots/am/ik/lab/syaberu/0.0.1-SNAPSHOT) 
 
 ```
-java -jar syaberu-0.0.1*.jar
+java -jar syaberu-*.jar
 ```
 
 ```
