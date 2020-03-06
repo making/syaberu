@@ -9,11 +9,13 @@ import java.net.URI;
 public class SyaberuProps {
     private final URI proxyUri;
     private final String proxySubscriptionId;
+    private final URI httpProxy;
 
     @ConstructorBinding
-    public SyaberuProps(URI proxyUri, String proxySubscriptionId) {
+    public SyaberuProps(URI proxyUri, String proxySubscriptionId, URI httpProxy) {
         this.proxyUri = proxyUri;
         this.proxySubscriptionId = proxySubscriptionId;
+        this.httpProxy = httpProxy;
     }
 
     public URI getProxyUri() {
@@ -22,5 +24,9 @@ public class SyaberuProps {
 
     public String getProxySubscriptionId() {
         return proxySubscriptionId;
+    }
+
+    public URI getHttpProxy() {
+        return httpProxy;
     }
 }
