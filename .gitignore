@@ -4,6 +4,9 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+src/main/resources/static/bundle.js
+src/main/resources/static/index.html
+
 ### STS ###
 .apt_generated
 .classpath
