@@ -6,13 +6,16 @@ const routingMetadata = (route) => {
 };
 
 export default class App {
-    constructor({url, subscriptionId}) {
-        this.rsocketFactory = new RsocketFactory({
+    constructor({url, subscriptionId, handleOnConnected, handleOnClosed, handleOnReconnecting}) {
+        new RsocketFactory({
             url: url,
             subscriptionId: subscriptionId,
             responder: {
                 requestResponse: this.requestResponse.bind(this)
-            }
+            },
+            handleOnConnected: handleOnConnected,
+            handleOnClosed: handleOnClosed,
+            handleOnReconnecting: handleOnReconnecting
         });
         this.audio = new Audio();
     }

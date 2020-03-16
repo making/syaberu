@@ -11,11 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     start.addEventListener('click', e => {
-        const app = new App({
-            url: url.value,
-            subscriptionId: subscriptionId.value
-        });
+        start.innerText = 'Connecting...';
         start.disabled = true;
-        start.innerText = 'Started';
+        new App({
+            url: url.value,
+            subscriptionId: subscriptionId.value,
+            handleOnConnected: () => {
+                start.innerText = 'Connected.';
+            },
+            handleOnClosed: () => {
+                start.innerText = 'Connection closed.';
+            },
+            handleOnReconnecting: () => {
+                start.innerText = 'Reconnecting...';
+            }
+        });
     });
 });

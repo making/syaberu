@@ -6,18 +6,33 @@ const routingMetadata = (route) => {
 };
 
 export default class RSocketFactory {
-    constructor({url, subscriptionId, responder}) {
+    constructor({url, subscriptionId, responder, handleOnConnected, handleOnClosed, handleOnReconnecting}) {
         this.url = url;
         this.subscriptionId = subscriptionId;
         this.responder = responder;
+        this.handleOnConnected = handleOnConnected;
+        this.handleOnClosed = handleOnClosed;
+        this.handleOnReconnecting = handleOnReconnecting;
         this._initClient();
-        (async () => {
+        const connect = (async () => {
             try {
                 this.rsocket = await this.getRSocket();
             } catch (error) {
                 throw error;
             }
-        })();
+        });
+        connect();
+        // Auto Reconnect
+        setInterval(() => {
+            if (this.rsocket) {
+                const availability = this.rsocket.availability();
+                if (availability === 0) {
+                    console.log('Reconnecting...');
+                    this.handleOnReconnecting();
+                    connect();
+                }
+            }
+        }, 1000);
     }
 
     _initClient() {
@@ -29,8 +44,8 @@ export default class RSocketFactory {
                 },
                 dataMimeType: 'application/json',
                 metadataMimeType: 'message/x.rsocket.routing.v0',
-                keepAlive: 10000,
-                lifetime: 20000
+                keepAlive: 1000,
+                lifetime: 3000
             },
             responder: this.responder
         })
@@ -46,11 +61,15 @@ export default class RSocketFactory {
                 this.client.close();
                 this._initClient();
             }
-            console.log('Connecting RSocket...');
+            if (!this.rsocket) {
+                console.log('Connecting RSocket...');
+            }
             this.rsocket = await this.client.connect();
             console.log('Connected');
+            this.handleOnConnected();
             return this.rsocket;
         } catch (error) {
+            this.handleOnClosed();
             throw error;
         }
     }
