@@ -34,4 +34,12 @@
         <module>syaberu-frontend</module>
         <module>syaberu-server</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>sonatype-snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </distributionManagement>
 </project>
