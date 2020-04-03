@@ -23,6 +23,14 @@ jobs:
     - name: mvn test
       run: |
         set -e
+        ./mvnw -V test
+    - name: mvn deploy
+      if: github.ref == 'refs/heads/master'
+      env:
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+      run: |
+        set -e
         cat > settings.xml <<EOF
         <settings>
           <servers>
