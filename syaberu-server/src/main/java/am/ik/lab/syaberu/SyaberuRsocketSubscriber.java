@@ -31,7 +31,7 @@ import java.time.Duration;
 import static io.rsocket.transport.netty.UriUtils.getPort;
 
 @Component
-@Profile("!test")
+@Profile("!no-rsocket-subscriber")
 public class SyaberuRsocketSubscriber implements ApplicationRunner {
 
     private final Logger log = LoggerFactory.getLogger(SyaberuRsocketSubscriber.class);
