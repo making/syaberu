@@ -74,10 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         send.innerText = 'Sending ...';
         send.disabled = true;
+        text.disabled = true;
         syaberuInvoker.invoke(params)
             .finally(() => {
                 send.disabled = false;
                 send.innerText = 'Send';
+                text.disabled = false;
             });
     };
 
