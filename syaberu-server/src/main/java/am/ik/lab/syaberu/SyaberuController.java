@@ -1,9 +1,9 @@
 package am.ik.lab.syaberu;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -11,7 +11,14 @@ import java.util.concurrent.CompletableFuture;
 public class SyaberuController {
     public static final String SHOW = "SHOW";
 
-    @PostMapping
+    @GetMapping(path = "/")
+    public ResponseEntity<?> redirect() {
+        return ResponseEntity.status(HttpStatus.SEE_OTHER)
+                .header(HttpHeaders.LOCATION, "/index.html")
+                .build();
+    }
+
+    @PostMapping(path = "/")
     public CompletableFuture<?> syaberu(@RequestHeader(name = "X-Api-Key") String apiKey,
                                         @RequestParam(name = "text") String text,
                                         @RequestParam(name = "speaker", required = false, defaultValue = Syaberu.SHOW) String speaker,
