@@ -2,6 +2,8 @@ applications:
 - name: syaberu
   path: syaberu-server/target/syaberu-server-0.0.1-SNAPSHOT.jar
   memory: 300m
+  services:
+  - syaberu-encryption
   env:
     ENCRYPTION_PASSWORD: ${vcap.services.syaberu-encryption.credentials.password}
     ENCRYPTION_SALT: ${vcap.services.syaberu-encryption.credentials.salt}
