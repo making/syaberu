@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     send.addEventListener('click', doInvoke);
-    text.addEventListener('keydown', e => {
+    text.addEventListener('keypress', e => {
         if (e.key === 'Enter') {
             doInvoke();
         }
