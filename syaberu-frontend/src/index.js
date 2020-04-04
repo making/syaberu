@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         apiKey.value = params.get('apiKey');
     }
 
+    const resetButtonState = () => {
+        send.innerText = 'Send';
+        send.disabled = false;
+        text.disabled = false;
+    };
+
     start.addEventListener('click', e => {
         start.innerText = 'Connecting...';
         start.disabled = true;
@@ -46,7 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             handleOnReconnecting: () => {
                 start.innerText = 'Reconnecting...';
-            }
+            },
+            handleBeforeInvoke: () => {
+                send.innerText = 'Speaking ...';
+                send.disabled = true;
+                text.disabled = true;
+            },
+            handleAfterInvoke: resetButtonState
         });
     });
 
@@ -76,11 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         send.disabled = true;
         text.disabled = true;
         syaberuInvoker.invoke(params)
-            .finally(() => {
-                send.disabled = false;
-                send.innerText = 'Send';
-                text.disabled = false;
-            });
+            .finally(resetButtonState);
     };
 
     send.addEventListener('click', doInvoke);

@@ -6,7 +6,7 @@ class Player {
 
     playMp3(base64EncodedAudio) {
         this.audio.src = `data:audio/mp3;base64,${base64EncodedAudio}`;
-        this.audio.play();
+        return this.audio.play();
     }
 }
 
