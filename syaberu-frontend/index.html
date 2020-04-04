@@ -13,44 +13,127 @@
 <br>
 <form class="form">
     <fieldset>
-        <div>
-            <div class="grid">
-                <div class="col">
-                    <div class="form-unit inline-form-unit">
-                        <div class="grid grid-inline">
-                            <div class="col col-fixed label-row">
-                                <label for="url">Proxy URL</label>
-                            </div>
-                            <div class="col field-row">
-                                <input type="text" name="url" id="url"/>
-                            </div>
+        <div class="grid">
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="url">Proxy URL</label>
                         </div>
-                        <div class="grid">
-                            <div class="col help-row type-gray"></div>
+                        <div class="col field-row">
+                            <input type="url" name="url" id="url"/>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="form-unit inline-form-unit">
-                        <div class="grid grid-inline">
-                            <div class="col col-fixed label-row">
-                                <label for="subscriptionId">SubscriptionID</label>
-                            </div>
-                            <div class="col field-row">
-                                <input type="text" name="subscriptionId" id="subscriptionId"/>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="col help-row type-gray"></div>
-                        </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
                     </div>
                 </div>
             </div>
-            <div class="grid">
-                <div class="col col-fixed">
-                    <button type="button" id="start" aria-label="Connect" class="pui-btn pui-btn-brand">
-                        <span>Connect</span></button>
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="subscriptionId">SubscriptionID</label>
+                        </div>
+                        <div class="col field-row">
+                            <input type="text" name="subscriptionId" id="subscriptionId"/>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col col-fixed">
+                <button type="button" id="start" aria-label="Connect" class="pui-btn pui-btn-brand">
+                    <span>Connect</span></button>
+            </div>
+        </div>
+        <hr/>
+        <div class="grid">
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="text">Text</label>
+                        </div>
+                        <div class="col field-row">
+                            <input type="text" name="text" id="text"/>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="speaker">Speaker</label>
+                        </div>
+                        <div class="col field-row">
+                            <select name="speaker" id="speaker">
+                                <option value="show">show</option>
+                                <option value="haruka">haruka</option>
+                                <option value="hikari">hikari</option>
+                                <option value="takeru">takeru</option>
+                                <option value="santa">santa</option>
+                                <option value="bear">bear</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="emotion">Emotion</label>
+                        </div>
+                        <div class="col field-row">
+                            <select name="emotion" id="emotion">
+                                <option value="">---</option>
+                                <option value="happiness">happiness</option>
+                                <option value="anger">anger</option>
+                                <option value="sadness">sadness</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="apiKey">API Key</label>
+                        </div>
+                        <div class="col field-row">
+                            <input type="text" name="apiKey" id="apiKey"/>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col col-fixed">
+                <button type="button" id="send" aria-label="Connect" class="pui-btn pui-btn-brand">
+                    <span>Send</span></button>
             </div>
         </div>
     </fieldset>

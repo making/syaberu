@@ -39,7 +39,7 @@ public class Mp3Controller {
                 .body(new LinkedMultiValueMap<String, String>() {
 
                     {
-                        final String speakerText = speaker.replace("\"", "");
+                        final String speakerText = speaker.replace("\"", "").toLowerCase();
                         add("text", text);
                         add("speaker", speakerText);
                         if (!speakerText.equalsIgnoreCase(Syaberu.SHOW) && !StringUtils.isEmpty(emotion)) {
