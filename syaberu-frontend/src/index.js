@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    send.addEventListener('click', e => {
+    const doInvoke = () => {
         if (!text.value || text.value === '') {
             alert('"Text" is empty!');
             return;
@@ -72,6 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
             emotion: emotion.value,
             apiKey: apiKey.value
         };
-        syaberuInvoker.invoke(params);
-    });
+        send.innerText = 'Sending ...';
+        send.disabled = true;
+        syaberuInvoker.invoke(params)
+            .finally(() => {
+                send.disabled = false;
+                send.innerText = 'Send';
+            });
+    };
+
+    send.addEventListener('click', doInvoke);
+    text.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            doInvoke();
+        }
+    })
 });
