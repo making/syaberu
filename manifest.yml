@@ -1,0 +1,15 @@
+applications:
+- name: syaberu
+  path: syaberu-server/target/syaberu-server-0.0.1-SNAPSHOT.jar
+  memory: 300m
+  env:
+    ENCRYPTION_PASSWORD: ${vcap.services.syaberu-encryption.credentials.password}
+    ENCRYPTION_SALT: ${vcap.services.syaberu-encryption.credentials.salt}
+    SPRING_PROFILES_ACTIVE: no-rsocket-subscriber
+    SERVER_TOMCAT_MAX_THREADS: 10
+    JAVA_OPTS: -XX:ReservedCodeCacheSize=32M -Xss512k -Duser.timezone=Asia/Tokyo
+    JBP_CONFIG_OPEN_JDK_JRE: '{memory_calculator: {stack_threads: 30}, jre: {version: 11.+}}'
+    MANAGEMENT_METRICS_TAGS_ORGANIZATION: ${vcap.application.organization_name}
+    MANAGEMENT_METRICS_TAGS_SPACE: ${vcap.application.space_name}
+    MANAGEMENT_METRICS_TAGS_APPLICATION: ${vcap.application.application_name}
+    MANAGEMENT_METRICS_TAGS_INSTANCE_ID: ${management.metrics.tags.application}:${vcap.application.instance_index}
