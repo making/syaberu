@@ -1,4 +1,4 @@
-import App from "./App";
+import RSocketHandler from "./RSocketHandler";
 
 document.addEventListener('DOMContentLoaded', () => {
     const start = document.getElementById('start');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     start.addEventListener('click', e => {
         start.innerText = 'Connecting...';
         start.disabled = true;
-        new App({
+        new RSocketHandler({
             url: url.value,
             subscriptionId: subscriptionId.value,
             handleOnConnected: () => {

@@ -2,7 +2,7 @@ import RsocketFactory from './RSocketFactory';
 import {Single} from 'rsocket-flowable';
 import player from './Player';
 
-export default class App {
+export default class RSocketHandler {
     constructor({url, subscriptionId, handleOnConnected, handleOnClosed, handleOnReconnecting}) {
         new RsocketFactory({
             url: url,
