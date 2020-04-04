@@ -5,15 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="http://d2bsvk2etkq8vr.cloudfront.net/pui-css/pui-components-16.0.0.css">
     <title>Syaberu Web</title>
 </head>
 <body>
-
-<div>
-    <label for="url">Proxy URL</label>: <input id="url" type="url">
-    <label for="subscriptionId">SubscriptionID</label>: <input id="subscriptionId">
-</div>
-<button id="start">Connect</button>
+<h1>Syaberu Web</h1>
+<br>
+<form class="form">
+    <fieldset>
+        <div>
+            <div class="grid">
+                <div class="col">
+                    <div class="form-unit inline-form-unit">
+                        <div class="grid grid-inline">
+                            <div class="col col-fixed label-row">
+                                <label for="url">Proxy URL</label>
+                            </div>
+                            <div class="col field-row">
+                                <input type="text" name="url" id="url"/>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col help-row type-gray"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-unit inline-form-unit">
+                        <div class="grid grid-inline">
+                            <div class="col col-fixed label-row">
+                                <label for="subscriptionId">SubscriptionID</label>
+                            </div>
+                            <div class="col field-row">
+                                <input type="text" name="subscriptionId" id="subscriptionId"/>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col help-row type-gray"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col col-fixed">
+                    <button type="button" id="start" aria-label="Connect" class="pui-btn pui-btn-primary">
+                        <span>Connect</span></button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
 <script src="bundle.js"></script>
 </body>
 </html>
