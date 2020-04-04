@@ -17,12 +17,13 @@ import java.util.Base64;
 
 @RestController
 public class Mp3Controller {
-
+    private final ApiKeyDecryptor apiKeyDecryptor;
     private final RestTemplate restTemplate;
 
     private final Logger log = LoggerFactory.getLogger(Mp3Controller.class);
 
-    public Mp3Controller(RestTemplateBuilder builder) {
+    public Mp3Controller(ApiKeyDecryptor apiKeyDecryptor, RestTemplateBuilder builder) {
+        this.apiKeyDecryptor = apiKeyDecryptor;
         this.restTemplate = builder
             .build();
     }
@@ -36,7 +37,7 @@ public class Mp3Controller {
         log.info("text: {}, speaker: {}, emotion: {}", text, speaker, emotion);
         final RequestEntity<LinkedMultiValueMap<String, String>> request = RequestEntity
             .post(URI.create("https://api.voicetext.jp/v1/tts"))
-            .headers(httpHeaders -> httpHeaders.setBasicAuth(apiKey, ""))
+            .headers(httpHeaders -> httpHeaders.setBasicAuth(this.apiKeyDecryptor.decrypt(apiKey), ""))
             .body(new LinkedMultiValueMap<String, String>() {
 
                 {

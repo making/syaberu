@@ -10,6 +10,11 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 public class SyaberuController {
     public static final String SHOW = "SHOW";
+    private final ApiKeyDecryptor apiKeyDecryptor;
+
+    public SyaberuController(ApiKeyDecryptor apiKeyDecryptor) {
+        this.apiKeyDecryptor = apiKeyDecryptor;
+    }
 
     @GetMapping(path = "/")
     public ResponseEntity<?> redirect() {
@@ -23,6 +28,6 @@ public class SyaberuController {
                                         @RequestParam(name = "text") String text,
                                         @RequestParam(name = "speaker", required = false, defaultValue = Syaberu.SHOW) String speaker,
                                         @RequestParam(name = "emotion", required = false) String emotion) throws Exception {
-        return Syaberu.speak(apiKey, text, speaker, emotion);
+        return Syaberu.speak(this.apiKeyDecryptor.decrypt(apiKey), text, speaker, emotion);
     }
 }
