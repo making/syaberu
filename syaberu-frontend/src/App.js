@@ -1,9 +1,6 @@
 import RsocketFactory from './RSocketFactory';
 import {Single} from 'rsocket-flowable';
-
-const routingMetadata = (route) => {
-    return String.fromCharCode(route.length) + route;
-};
+import player from './Player';
 
 export default class App {
     constructor({url, subscriptionId, handleOnConnected, handleOnClosed, handleOnReconnecting}) {
@@ -17,7 +14,6 @@ export default class App {
             handleOnClosed: handleOnClosed,
             handleOnReconnecting: handleOnReconnecting
         });
-        this.audio = new Audio();
     }
 
     requestResponse(payload) {
@@ -41,8 +37,7 @@ export default class App {
             }
         })
             .then(x => x.text())
-            .then(txt => this.audio.src = `data:audio/mp3;base64,${txt}`)
-            .then(() => this.audio.play())
+            .then(txt => player.playMp3(txt))
             .catch(e => alert(e.toString()));
         return Single.of({data: 'WEB'});
     }
