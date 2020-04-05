@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="https://d2bsvk2etkq8vr.cloudfront.net/pui-css/pui-components-16.0.0.css">
+    <link rel="stylesheet" href="https://d2bsvk2etkq8vr.cloudfront.net/pui-css/pui-components-19.2.3.css">
     <title>Syaberu Web</title>
 </head>
 <body>
@@ -47,7 +47,7 @@
         </div>
         <div class="grid">
             <div class="col col-fixed">
-                <button type="button" id="start" aria-label="Connect" class="pui-btn pui-btn-brand">
+                <button type="button" id="start" aria-label="Connect" class="pui-btn pui-btn--default">
                     <span>Connect</span></button>
             </div>
         </div>
@@ -129,15 +129,48 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <button type="button" id="send" aria-label="Send" class="pui-btn pui-btn--default">
+                    <span>Send</span></button>
+            </div>
         </div>
         <div class="grid">
-            <div class="col col-fixed">
-                <button type="button" id="send" aria-label="Connect" class="pui-btn pui-btn-brand">
-                    <span>Send</span></button>
+            <div class="col">
+                <div class="form-unit inline-form-unit">
+                    <div class="grid grid-inline">
+                        <div class="col col-fixed label-row">
+                            <label for="scheduledAt">Scheduled At</label>
+                        </div>
+                        <div class="col field-row">
+                            <input id="scheduledAt" name="scheduledAt" type="datetime-local">
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col help-row type-gray"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <button type="button" id="schedule" aria-label="Schedule" class="pui-btn pui-btn--default">
+                    <span>Schedule</span></button>
             </div>
         </div>
     </fieldset>
 </form>
+<hr/>
+<h3>Scheduled Calls</h3>
+<table class="pui-table pui-table--tr-hover">
+    <thead>
+    <tr>
+        <th>Scheduled At</th>
+        <th>Text</th>
+        <th>Speaker</th>
+        <th>Emotion</th>
+        <th>State</th>
+    </tr>
+    </thead>
+    <tbody id="scheduledCalls"></tbody>
+</table>
 <script src="bundle.js"></script>
 </body>
 </html>
