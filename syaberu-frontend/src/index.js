@@ -80,7 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                     }
                 }
-                return `<tr><td>${call.scheduledAt}</td><td>${call.text}</td><td>${call.speaker}</td><td>${call.emotion || ''}</td><td><span class="pui-alert pui-alert-${alert}">${call.state}</span></td></tr>`
+                return `<tr>
+                            <td>${call.scheduledAt}</td>
+                            <td>${call.text}</td>
+                            <td>${call.speaker}</td>
+                            <td>${call.emotion || ''}</td>
+                            <td><span class="pui-alert pui-alert-${alert}">${call.state}</span></td>
+                            <td><span><button type="button" aria-label="Delete" class="pui-btn pui-btn--danger" data-id="${call.id}">Delete</button></span></td>
+                        </tr>`
             }).join(''))
             .then(html => scheduledCalls.innerHTML = html);
     };
@@ -212,5 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 scheduledAt.disabled = false;
                 schedule.innerText = 'Schedule';
             });
+    });
+    scheduledCalls.addEventListener('click', e => {
+        const elm = e.target;
+        if (elm.type === 'button' && elm.dataset && elm.dataset.id) {
+            const id = elm.dataset.id;
+            elm.innerText = 'Deleting...';
+            elm.disabled = true;
+            scheduledCallService.deleteScheduledCall(httpUrl(), id)
+                .then(loadScheduledCalls);
+        }
     });
 });

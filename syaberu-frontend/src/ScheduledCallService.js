@@ -14,7 +14,12 @@ class ScheduledCallService {
         }).then(res => {
             return res.json();
         });
+    }
 
+    deleteScheduledCall(httpUrl, id) {
+        return fetch(`${httpUrl}/scheduled_calls/${id}`, {
+            method: 'DELETE'
+        });
     }
 }
 
