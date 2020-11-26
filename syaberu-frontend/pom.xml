@@ -13,7 +13,7 @@
     <artifactId>syaberu-frontend</artifactId>
 
     <properties>
-        <frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.10.4</frontend-maven-plugin.version>
     </properties>
 
     <build>
